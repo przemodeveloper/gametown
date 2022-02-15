@@ -7,7 +7,7 @@ const CartItem: React.FC<{ title: string; price: number; amount: number }> = (
     <div className={classes["cart-item"]}>
       <p className="fw-bold">{props.title}</p>
       <div className={classes.label}>
-        <p className="mb-0">{`${props.price}`}</p>
+        <p className="mb-0">{`$${props.price}`}</p>
         <div className={classes.amount}>
           <p className="mb-0">x {props.amount}</p>
         </div>

@@ -1,7 +1,7 @@
 import { observer } from "mobx-react-lite";
 import { useStore } from "../stores/game-context";
-import classes from "./Cart.module.scss";
 import CartItem from "./CartItem";
+import PriceSummary from "./PriceSummary";
 
 const Cart = () => {
   const { games } = useStore();
@@ -18,6 +18,7 @@ const Cart = () => {
           />
         );
       })}
+      <PriceSummary />
     </>
   );
 };
