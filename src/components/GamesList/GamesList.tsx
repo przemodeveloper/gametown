@@ -9,16 +9,7 @@ const GamesList = () => {
   return (
     <div className={classes.list}>
       {games.gamesList.map((game) => {
-        return (
-          <div key={game.id} onClick={() => games.addGameToCart(game)}>
-            <GameItem
-              title={game.title}
-              description={game.description}
-              price={game.price}
-              image={game.image}
-            />
-          </div>
-        );
+        return <GameItem key={game.id} game={game} />;
       })}
     </div>
   );
