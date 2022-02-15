@@ -10,9 +10,8 @@ const GamesList = () => {
     <div className={classes.list}>
       {games.gamesList.map((game) => {
         return (
-          <div onClick={() => games.addGameToCart(game)}>
+          <div key={game.id} onClick={() => games.addGameToCart(game)}>
             <GameItem
-              key={game.id}
               title={game.title}
               description={game.description}
               price={game.price}

@@ -1,0 +1,19 @@
+@import "../../variables";
+
+.cart-item {
+  border-bottom: 2px solid #301a4b;
+  margin-bottom: 2rem;
+  font-size: $font-size-small;
+}
+
+.label {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.amount {
+  border: 1px solid #301a4b;
+  margin-left: 2rem;
+  padding: 0.5rem;
+}
