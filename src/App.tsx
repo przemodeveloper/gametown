@@ -1,3 +1,4 @@
+import Cart from "./components/Cart/Cart";
 import GamesList from "./components/GamesList/GamesList";
 import Header from "./components/Header/Header";
 
@@ -5,7 +6,10 @@ const App = () => {
   return (
     <>
       <Header />
-      <GamesList />
+      <div className="container">
+        <Cart />
+        <GamesList />
+      </div>
     </>
   );
 };
