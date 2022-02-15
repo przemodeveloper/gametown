@@ -1,11 +1,22 @@
+@import "../../variables";
+
 .header {
   background-color: #301a4b;
   width: 100%;
   padding: 1rem 10rem;
-  display: inline-block;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin: auto;
 
   h1 {
     color: #ffeaec;
   }
+}
+
+.cart-btn {
+  font-size: $font-size-small;
+  padding: 0 1.5rem;
+  border: none;
+  color: #301a4b;
 }
