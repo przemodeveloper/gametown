@@ -32,6 +32,7 @@ const GameStore = () => makeAutoObservable({
       ] as Game[],
 
       cart: [] as Game[],
+      totalPrice: 0,
 
       addGameToCart(game: Game) {
           const gameIndex = this.cart.findIndex((g) => g.id === game.id)
@@ -40,7 +41,11 @@ const GameStore = () => makeAutoObservable({
           } else {
               this.cart[gameIndex].amount++
           }
-      
+
+          this.totalPrice = Number(this.cart.map((g) => {
+            return g.amount * g.price
+          }).reduce((acc, el) => acc + el, 0).toFixed(2))
+          
       }
 })
 

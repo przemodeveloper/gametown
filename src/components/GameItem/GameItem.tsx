@@ -13,7 +13,7 @@ const GameItem: React.FC<{
       </div>
       <div className={classes["description-container"]}>
         <h2>{props.title}</h2>
-        <p>{props.description}</p>
+        <p className="d-none d-md-block">{props.description}</p>
         <p>{props.price}</p>
       </div>
     </li>
