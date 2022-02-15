@@ -1,5 +1,6 @@
 import GameItem from "../GameItem/GameItem";
 import classes from "./GamesList.module.scss";
+import Container from "react-bootstrap/Container";
 
 const GamesList = () => {
   const GAMES = [
@@ -9,18 +10,22 @@ const GamesList = () => {
       description:
         "Third person action game featuring intense hand-to-hand combat",
       price: 29.99,
+      image: "https://i.iplsc.com/sifu/000EILQDE225H421-C122-F4.jpg",
     },
     {
       id: 2,
-      title: "Wartales",
-      description: "Open world RPG in which you lead a group of mercenaries",
+      title: "Elden Ring",
+      description:
+        "Rise, Tarnished, and be guided by grace to brandish the power of the Elden Ring",
       price: 12.89,
+      image:
+        "https://image.api.playstation.com/vulcan/ap/rnd/202107/1612/Y5RHNmzAtc6sRYwZlYiKHAxN.png",
     },
   ];
 
   return (
-    <section className={classes.list}>
-      <ul>
+    <Container>
+      <div className={classes.list}>
         {GAMES.map((game) => {
           return (
             <GameItem
@@ -28,11 +33,12 @@ const GamesList = () => {
               title={game.title}
               description={game.description}
               price={game.price}
+              image={game.image}
             />
           );
         })}
-      </ul>
-    </section>
+      </div>
+    </Container>
   );
 };
 
