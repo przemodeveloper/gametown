@@ -1,9 +1,10 @@
 @import "../../variables";
 
 .cart-item {
-  border-bottom: 2px solid #0c2d48;
+  border-bottom: 2px solid $color-primary;
   margin-bottom: 2rem;
   font-size: $font-size-small;
+  color: $color-primary;
 }
 
 .label {
@@ -13,7 +14,7 @@
 }
 
 .amount {
-  border: 1px solid #0c2d48;
+  border: 2px solid $color-primary;
   text-align: center;
   margin-left: 2rem;
   padding: 0.5rem;
@@ -27,16 +28,17 @@
   column-gap: 4px;
 
   button {
-    border: 1px solid #0c2d48;
+    border: 2px solid $color-primary;
     width: 35px;
     text-align: center;
+    vertical-align: middle;
     height: 35px;
-    background-color: #ffffff;
+    background-color: $color-secondary;
     transition: all 0.3s;
 
     &:hover {
-      background-color: #0c2d48;
-      color: #ffffff;
+      background-color: $color-primary;
+      color: $color-secondary;
     }
   }
 }
