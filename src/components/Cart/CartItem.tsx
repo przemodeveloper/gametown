@@ -6,7 +6,7 @@ const CartItem: React.FC<{
   title: string;
   price: number;
   amount: number;
-  id: number;
+  id: string;
   cartItem: Game;
 }> = (props) => {
   const { games } = useStore();
