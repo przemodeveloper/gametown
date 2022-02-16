@@ -2,12 +2,15 @@
 
 .header {
   background-color: #301a4b;
-  width: 100%;
-  padding: 1rem 5rem;
+  padding: 1rem 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin: auto;
+
+  @media (min-width: 768px) {
+    padding: 1rem 10rem;
+  }
 
   h1 {
     color: #ffeaec;
