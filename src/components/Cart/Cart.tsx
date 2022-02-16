@@ -8,13 +8,15 @@ const Cart = () => {
 
   return (
     <>
-      {games.cart.map((crt) => {
+      {games.cart.map((item) => {
         return (
           <CartItem
-            key={crt.id}
-            title={crt.title}
-            amount={crt.amount}
-            price={crt.price}
+            key={item.id}
+            id={item.id}
+            title={item.title}
+            amount={item.amount}
+            price={item.price}
+            cartItem={item}
           />
         );
       })}

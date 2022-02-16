@@ -11,7 +11,7 @@ const App = () => {
     <>
       <Header />
       <div className="container">
-        {games.isCartVisible && <Cart />}
+        {games.isCartVisible && games.totalQuantity > 0 && <Cart />}
         <GamesList />
       </div>
     </>

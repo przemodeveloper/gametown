@@ -44,20 +44,37 @@ const GameStore = () => makeAutoObservable({
               this.cart[gameIndex].amount++
           }
 
-          this.totalPrice = Number(this.cart.map((g) => {
-            return g.amount * g.price
-          }).reduce((acc, el) => acc + el, 0).toFixed(2))
 
-          this.totalQuantity = this.cart.map((g) => {
-            return g.amount
-          }).reduce((acc, el) => acc + el, 0)
-          console.log(this.totalQuantity)
-          
+          this.calculateTotalPrice()
+          this.calculateTotalQuantity()
+      },
+      removeSingleGameFromCart(id: Number) {
+        const gameIndex = this.cart.findIndex((g) => g.id === id)
+        this.cart[gameIndex].amount--
+
+        if(this.cart[gameIndex].amount === 0) {
+          const updatedCart = this.cart.filter(g => g.id !== id)
+          this.cart = updatedCart
+        }
+
+
+        this.calculateTotalPrice()
+        this.calculateTotalQuantity()
+        
+      },
+      calculateTotalPrice() {
+        this.totalPrice = Number(this.cart.map((g) => {
+          return g.amount * g.price
+        }).reduce((acc, el) => acc + el, 0).toFixed(2))
+      },
+      calculateTotalQuantity() {
+        this.totalQuantity = this.cart.map((g) => {
+          return g.amount
+        }).reduce((acc, el) => acc + el, 0)
       },
       toggleCartVisibility() {
-        if(this.totalQuantity > 0) {
+        if(this.totalQuantity > 0) 
           this.isCartVisible = !this.isCartVisible
-        }
       }
 })
 
