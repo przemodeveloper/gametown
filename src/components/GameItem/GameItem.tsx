@@ -14,11 +14,19 @@ const GameItem: React.FC<{ game: Game }> = (props) => {
           className={classes.image}
         />
       </div>
-      <div className={classes["description-container"]}>
-        <h2>{props.game.title}</h2>
-        <p className="d-none d-md-block">{props.game.description}</p>
+
+      <div
+        className={`${classes["description-container"]} d-flex justify-content-around align-items-end`}
+      >
+        <div>
+          <h2>{props.game.title}</h2>
+          <p className={`${classes.description} d-none d-md-block`}>
+            {props.game.description}
+          </p>
+        </div>
         <p>{`$${props.game.price}`}</p>
       </div>
+
       <button
         className={classes["add-btn"]}
         onClick={() => games.addGameToCart(props.game)}
