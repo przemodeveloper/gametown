@@ -18,7 +18,7 @@ const CartItem: React.FC<{
         <div className={classes.amount}>
           <p className="mb-0">x {props.amount}</p>
         </div>
-        <div>
+        <div className={classes["btn-group"]}>
           <button onClick={() => games.addGameToCart(props.cartItem)}>+</button>
           <button onClick={() => games.removeSingleGameFromCart(props.id)}>
             -

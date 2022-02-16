@@ -3,7 +3,7 @@
 .item {
   position: relative;
   font-size: $font-size-small;
-  color: white;
+  color: $color-secondary;
   list-style-type: none;
   display: flex;
   flex-direction: column;
@@ -47,8 +47,8 @@
   top: 50%;
   right: 50%;
   transform: translate(50%, -50%);
-  background-color: #ffeaec;
+  background-color: $color-secondary;
   border: none;
-  color: #301a4b;
+  color: $color-primary;
   transition: all 0.5s;
 }
