@@ -1,9 +1,13 @@
-import { Game } from "../stores/GameStore";
+import { useDispatch } from "react-redux";
+import { Game } from "../../redux/store";
 import classes from "./GameItem.module.scss";
-import { useStore } from "../stores/game-context";
 
 const GameItem: React.FC<{ game: Game }> = (props) => {
-  const { games } = useStore();
+  const dispatch = useDispatch();
+
+  const addGameHandler = (game: Game) => {
+    dispatch({ type: "ADD_GAME_TO_CART", payload: game });
+  };
 
   return (
     <li className={classes.item}>
@@ -29,7 +33,7 @@ const GameItem: React.FC<{ game: Game }> = (props) => {
 
       <button
         className={classes["add-btn"]}
-        onClick={() => games.addGameToCart(props.game)}
+        onClick={() => addGameHandler(props.game)}
       >
         Add to cart
       </button>

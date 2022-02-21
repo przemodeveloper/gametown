@@ -1,18 +1,18 @@
-import { observer } from "mobx-react-lite";
+import { useSelector } from "react-redux";
+import { Game, State } from "../../redux/store";
 import GameItem from "../GameItem/GameItem";
-import { useStore } from "../stores/game-context";
 import classes from "./GamesList.module.scss";
 
 const GamesList = () => {
-  const { games } = useStore();
+  const games = useSelector((state: State) => state.gamesList);
 
   return (
     <div className={classes.list}>
-      {games.gamesList.map((game) => {
+      {games.map((game: Game) => {
         return <GameItem key={game.id} game={game} />;
       })}
     </div>
   );
 };
 
-export default observer(GamesList);
+export default GamesList;

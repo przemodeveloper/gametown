@@ -1,23 +1,27 @@
 import classes from "./Header.module.scss";
 
-import { useStore } from "../stores/game-context";
-import { observer } from "mobx-react-lite";
+import { useDispatch, useSelector } from "react-redux";
+import { State } from "../../redux/store";
 
 const Header = () => {
-  const { games } = useStore();
+  const totalQuantity = useSelector((state: State) => state.totalQuantity);
+
+  const dispatch = useDispatch();
+
+  const toggleHandler = () => {
+    dispatch({ type: "TOGGLE_CART_VISIBILITY" });
+  };
+
   return (
     <header className={classes.header}>
       <h1 className="mb-0">gameTOWN</h1>
       <div>
-        <button
-          onClick={() => games.toggleCartVisibility()}
-          className={classes["cart-btn"]}
-        >
-          Cart ({games.totalQuantity})
+        <button onClick={toggleHandler} className={classes["cart-btn"]}>
+          Cart ({totalQuantity})
         </button>
       </div>
     </header>
   );
 };
 
-export default observer(Header);
+export default Header;

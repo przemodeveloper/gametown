@@ -1,6 +1,6 @@
 import classes from "./CartItem.module.scss";
-import { useStore } from "../stores/game-context";
-import { Game } from "../stores/GameStore";
+import { useDispatch } from "react-redux";
+import { Game } from "../../redux/store";
 
 const CartItem: React.FC<{
   title: string;
@@ -9,7 +9,16 @@ const CartItem: React.FC<{
   id: string;
   cartItem: Game;
 }> = (props) => {
-  const { games } = useStore();
+  const dispatch = useDispatch();
+
+  const addGameHandler = (game: Game) => {
+    dispatch({ type: "ADD_GAME_TO_CART", payload: game });
+  };
+
+  const removeGameHandler = (id: string) => {
+    dispatch({ type: "REMOVE_SINGLE_GAME_FROM_CART", payload: id });
+  };
+
   return (
     <div className={classes["cart-item"]}>
       <p className="fw-bold">{props.title}</p>
@@ -19,10 +28,8 @@ const CartItem: React.FC<{
           <p className="mb-0">x {props.amount}</p>
         </div>
         <div className={classes["btn-group"]}>
-          <button onClick={() => games.addGameToCart(props.cartItem)}>+</button>
-          <button onClick={() => games.removeSingleGameFromCart(props.id)}>
-            -
-          </button>
+          <button onClick={() => addGameHandler(props.cartItem)}>+</button>
+          <button onClick={() => removeGameHandler(props.id)}>-</button>
         </div>
       </div>
     </div>

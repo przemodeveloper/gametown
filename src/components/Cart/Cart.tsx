@@ -1,14 +1,14 @@
-import { observer } from "mobx-react-lite";
-import { useStore } from "../stores/game-context";
+import { useSelector } from "react-redux";
+import { State } from "../../redux/store";
 import CartItem from "./CartItem";
 import PriceSummary from "./PriceSummary";
 
 const Cart = () => {
-  const { games } = useStore();
+  const cart = useSelector((state: State) => state.cart);
 
   return (
     <>
-      {games.cart.map((item) => {
+      {cart.map((item: any) => {
         return (
           <CartItem
             key={item.id}
@@ -25,4 +25,4 @@ const Cart = () => {
   );
 };
 
-export default observer(Cart);
+export default Cart;

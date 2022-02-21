@@ -1,9 +1,11 @@
-import { useStore } from "../stores/game-context";
+import { useSelector } from "react-redux";
+import { State } from "../../redux/store";
 import classes from "./PriceSummary.module.scss";
 
 const PriceSummary = () => {
-  const { games } = useStore();
-  return <h1 className={classes.title}>Total amount: ${games.totalPrice}</h1>;
+  const totalPrice = useSelector((state: State) => state.totalPrice);
+
+  return <h1 className={classes.title}>Total amount: ${totalPrice}</h1>;
 };
 
 export default PriceSummary;

@@ -1,26 +1,22 @@
-import { observer } from "mobx-react-lite";
-import { useEffect } from "react";
+import { useSelector } from "react-redux";
 import Cart from "./components/Cart/Cart";
 import GamesList from "./components/GamesList/GamesList";
 import Header from "./components/Header/Header";
-import { useStore } from "./components/stores/game-context";
+import { State } from "./redux/store";
 
 const App = () => {
-  const { games } = useStore();
-
-  useEffect(() => {
-    games.fetchGames();
-  }, [games]);
+  const isCartVisible = useSelector((state: State) => state.isCartVisible);
+  const totalQuantity = useSelector((state: State) => state.totalQuantity);
 
   return (
     <>
       <Header />
       <div className="container">
-        {games.isCartVisible && games.totalQuantity > 0 && <Cart />}
+        {isCartVisible && totalQuantity > 0 && <Cart />}
         <GamesList />
       </div>
     </>
   );
 };
 
-export default observer(App);
+export default App;
