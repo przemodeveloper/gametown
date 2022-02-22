@@ -2,6 +2,7 @@ import classes from "./Header.module.scss";
 
 import { useDispatch, useSelector } from "react-redux";
 import { State } from "../../redux/store";
+import { TOGGLE_CART_VISIBILITY } from "../../redux/actionTypes";
 
 const Header = () => {
   const totalQuantity = useSelector((state: State) => state.totalQuantity);
@@ -9,7 +10,7 @@ const Header = () => {
   const dispatch = useDispatch();
 
   const toggleHandler = () => {
-    dispatch({ type: "TOGGLE_CART_VISIBILITY" });
+    dispatch({ type: TOGGLE_CART_VISIBILITY });
   };
 
   return (

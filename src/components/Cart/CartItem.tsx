@@ -1,6 +1,10 @@
 import classes from "./CartItem.module.scss";
 import { useDispatch } from "react-redux";
 import { Game } from "../../redux/store";
+import {
+  ADD_GAME_TO_CART,
+  REMOVE_SINGLE_GAME_FROM_CART,
+} from "../../redux/actionTypes";
 
 const CartItem: React.FC<{
   title: string;
@@ -12,11 +16,11 @@ const CartItem: React.FC<{
   const dispatch = useDispatch();
 
   const addGameHandler = (game: Game) => {
-    dispatch({ type: "ADD_GAME_TO_CART", payload: game });
+    dispatch({ type: ADD_GAME_TO_CART, payload: game });
   };
 
   const removeGameHandler = (id: string) => {
-    dispatch({ type: "REMOVE_SINGLE_GAME_FROM_CART", payload: id });
+    dispatch({ type: REMOVE_SINGLE_GAME_FROM_CART, payload: id });
   };
 
   return (

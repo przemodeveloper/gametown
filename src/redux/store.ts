@@ -1,6 +1,7 @@
 import { createStore, applyMiddleware, Dispatch } from "redux"
 import { composeWithDevTools } from "redux-devtools-extension"
 import thunkMiddleware from "redux-thunk"
+import { ADD_GAME_TO_CART, LOAD_GAMES, REMOVE_SINGLE_GAME_FROM_CART, TOGGLE_CART_VISIBILITY } from "./actionTypes"
 
 
 export interface Game {
@@ -52,11 +53,11 @@ const initialState = {
 
 
 const gameReducer = (state = initialState, action: any) => {
-    if(action.type === "LOAD_GAMES") {
+    if(action.type === LOAD_GAMES) {
       return {...state, gamesList: action.payload}
     }
 
-    if(action.type === "ADD_GAME_TO_CART") {
+    if(action.type === ADD_GAME_TO_CART) {
         const updatedCart = [...state.cart]  as Game[]
 
         const gameIndex = updatedCart.findIndex((g) => g.id === action.payload.id)
@@ -78,7 +79,7 @@ const gameReducer = (state = initialState, action: any) => {
          return {...state, cart: updatedCart, totalPrice: updatedPrice, totalQuantity: updatedQuantity}
     }
 
-    if(action.type === "REMOVE_SINGLE_GAME_FROM_CART") {
+    if(action.type === REMOVE_SINGLE_GAME_FROM_CART) {
 
         let updatedCart = [...state.cart] as Game[]
         const gameIndex = updatedCart.findIndex((g) => g.id === action.payload)
@@ -100,7 +101,7 @@ const gameReducer = (state = initialState, action: any) => {
 
     }
 
-    if(action.type === "TOGGLE_CART_VISIBILITY") {
+    if(action.type === TOGGLE_CART_VISIBILITY) {
         const updatedState = {...state}
         if(state.totalQuantity > 0) 
           return {...state, isCartVisible: !updatedState.isCartVisible}
@@ -128,7 +129,7 @@ export const fetchGames = async (dispatch: Dispatch) => {
         }
 
 
-  dispatch({type: 'LOAD_GAMES', payload: loadedGames })
+  dispatch({type: LOAD_GAMES, payload: loadedGames })
 } 
 
 const store = createStore(gameReducer as any, composedEnhancer)
