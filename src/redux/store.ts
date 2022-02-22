@@ -24,27 +24,7 @@ export interface State {
 const composedEnhancer = composeWithDevTools(applyMiddleware(thunkMiddleware))
 
 const initialState = {
-    gamesList: [
-        {
-            id: 'asd',
-            title: "Sifu",
-            description:
-              "Third person action game featuring intense hand-to-hand combat",
-            price: 29.99,
-            amount: 0,
-            image: "https://i.iplsc.com/sifu/000EILQDE225H421-C122-F4.jpg",
-          },
-          {
-            id: "sad",
-            title: "Elden Ring",
-            description:
-              "Rise, Tarnished, and be guided by grace to brandish the power of the Elden Ring",
-            price: 12.89,
-            amount: 0,
-            image:
-              "https://image.api.playstation.com/vulcan/ap/rnd/202107/1612/Y5RHNmzAtc6sRYwZlYiKHAxN.png",
-          },
-    ] as Game[],
+    gamesList: [] as Game[],
     cart: [] as Game[],
     totalPrice: 0 as Number,
     totalQuantity: 0 as Number,
