@@ -3,9 +3,9 @@ import Cart from "./components/Cart/Cart";
 import GamesList from "./components/GamesList/GamesList";
 import Header from "./components/Header/Header";
 import store from "./redux/store";
-import { fetchGames } from "./redux/store";
 import { useEffect } from "react";
 import { State } from "./schemas";
+import { fetchGames } from "./service";
 
 const App = () => {
   const isCartVisible = useSelector((state: State) => state.isCartVisible);

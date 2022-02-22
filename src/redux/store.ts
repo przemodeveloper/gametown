@@ -1,11 +1,8 @@
-import { createStore, applyMiddleware, Dispatch } from "redux"
+import { createStore, applyMiddleware } from "redux"
 import { composeWithDevTools } from "redux-devtools-extension"
 import thunkMiddleware from "redux-thunk"
-import { Game, State } from "../schemas"
+import { Action, Game, State } from "../schemas"
 import { ADD_GAME_TO_CART, LOAD_GAMES, REMOVE_SINGLE_GAME_FROM_CART, TOGGLE_CART_VISIBILITY } from "./actionTypes"
-
-
-
 
 const composedEnhancer = composeWithDevTools(applyMiddleware(thunkMiddleware))
 
@@ -18,7 +15,7 @@ const initialState = {
 } as State
 
 
-const gameReducer = (state = initialState, action: any) => {
+const gameReducer = (state = initialState, action: Action) => {
     if(action.type === LOAD_GAMES) {
       return {...state, gamesList: action.payload}
     }
@@ -77,27 +74,7 @@ const gameReducer = (state = initialState, action: any) => {
     return state
 }
 
-export const fetchGames = async (dispatch: Dispatch) => {
-  const response = await fetch("https://gametown-f29a0-default-rtdb.firebaseio.com/games.json")
-  const data = await response.json()
 
-  const loadedGames = [] as Game[]
-
-        for(const key in data) {
-          loadedGames.push({
-            id: key,
-            title: data[key].title,
-            description: data[key].description,
-            price: data[key].price,
-            image: data[key].image,
-            amount: 0
-          })
-        }
-
-
-  dispatch({type: LOAD_GAMES, payload: loadedGames })
-} 
-
-const store = createStore(gameReducer as any, composedEnhancer)
+const store = createStore(gameReducer, composedEnhancer)
 
 export default store;
