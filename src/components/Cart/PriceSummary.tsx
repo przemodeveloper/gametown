@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { State } from "../../redux/store";
+import { State } from "../../schemas";
 import classes from "./PriceSummary.module.scss";
 
 const PriceSummary = () => {

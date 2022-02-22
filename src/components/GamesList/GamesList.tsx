@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { Game, State } from "../../redux/store";
+import { Game, State } from "../../schemas";
 import GameItem from "../GameItem/GameItem";
 import classes from "./GamesList.module.scss";
 

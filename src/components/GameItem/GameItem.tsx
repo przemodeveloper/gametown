@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { ADD_GAME_TO_CART } from "../../redux/actionTypes";
-import { Game } from "../../redux/store";
+import { Game } from "../../schemas";
 import classes from "./GameItem.module.scss";
 
 const GameItem: React.FC<{ game: Game }> = (props) => {

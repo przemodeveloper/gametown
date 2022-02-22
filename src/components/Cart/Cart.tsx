@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { State } from "../../redux/store";
+import { State } from "../../schemas";
 import CartItem from "./CartItem";
 import PriceSummary from "./PriceSummary";
 

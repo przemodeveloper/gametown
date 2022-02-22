@@ -1,25 +1,11 @@
 import { createStore, applyMiddleware, Dispatch } from "redux"
 import { composeWithDevTools } from "redux-devtools-extension"
 import thunkMiddleware from "redux-thunk"
+import { Game, State } from "../schemas"
 import { ADD_GAME_TO_CART, LOAD_GAMES, REMOVE_SINGLE_GAME_FROM_CART, TOGGLE_CART_VISIBILITY } from "./actionTypes"
 
 
-export interface Game {
-    id: string,
-    title: string,
-    description: string,
-    price: number,
-    amount: number,
-    image: string
-}
 
-export interface State {
-    gamesList: Game[],
-    cart: Game[],
-    totalPrice: number,
-    totalQuantity: number,
-    isCartVisible: boolean
-}
 
 const composedEnhancer = composeWithDevTools(applyMiddleware(thunkMiddleware))
 
