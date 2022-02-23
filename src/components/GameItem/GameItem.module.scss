@@ -14,11 +14,6 @@
   max-height: 500px;
 
   &:hover {
-    .image {
-      opacity: 0.6;
-      transform: scale(1.1);
-    }
-
     .add-btn {
       opacity: 1;
     }
@@ -32,18 +27,27 @@
 .image {
   max-width: 100%;
   height: 100%;
+  object-fit: cover;
   opacity: 1;
-  transition: all 0.5s;
 }
 
 .description-container {
   position: absolute;
   width: 100%;
   padding: 8px;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(0, 0, 0, 0.4) 25%,
+    rgba(0, 0, 0, 0.65),
+    rgba(0, 0, 0, 0.85) 75%,
+    black 100%
+  );
 }
 
 .description {
   max-width: 35ch;
+  margin-bottom: 0;
 }
 
 .add-btn {

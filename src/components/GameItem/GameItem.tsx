@@ -28,7 +28,7 @@ const GameItem: FC<{ game: Game }> = (props) => {
           <h2>{props.game.title}</h2>
           <p className={classes.description}>{props.game.description}</p>
         </div>
-        <p>{`$${props.game.price}`}</p>
+        <p className="mb-0">{`$${props.game.price}`}</p>
       </div>
 
       <button
