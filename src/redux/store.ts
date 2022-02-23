@@ -18,7 +18,21 @@ const initialState = {
 
 const gameReducer = (state = initialState, action: Action) => {
     if(action.type === LOAD_GAMES) {
-      return {...state, gamesList: action.payload, isLoaded: true}
+
+      const loadedGames = [] as Game[]
+  
+      for(const key in action.payload) {
+        loadedGames.push({
+          id: key,
+          title: action.payload[key].title,
+          description: action.payload[key].description,
+          price: action.payload[key].price,
+          image: action.payload[key].image,
+          amount: 0
+        })
+      }
+
+      return {...state, gamesList: loadedGames, isLoaded: true}
     }
 
     if(action.type === ADD_GAME_TO_CART) {
