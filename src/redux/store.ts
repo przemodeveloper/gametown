@@ -75,7 +75,6 @@ const gameReducer = (state = initialState, action: Action) => {
     return state
 }
 
-
 const store = createStore(gameReducer, composedEnhancer)
 
 export default store;

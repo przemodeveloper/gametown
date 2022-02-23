@@ -1,10 +1,10 @@
-import { useSelector } from "react-redux";
+import { useAppSelector } from "../../hooks";
 import { State } from "../../schemas";
 import CartItem from "./CartItem";
 import PriceSummary from "./PriceSummary";
 
 const Cart = () => {
-  const cart = useSelector((state: State) => state.cart);
+  const cart = useAppSelector((state: State) => state.cart);
 
   return (
     <>

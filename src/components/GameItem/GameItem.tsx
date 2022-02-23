@@ -1,11 +1,11 @@
 import { FC } from "react";
-import { useDispatch } from "react-redux";
+import { useAppDispatch } from "../../hooks";
 import { ADD_GAME_TO_CART } from "../../redux/actionTypes";
 import { Game } from "../../schemas";
 import classes from "./GameItem.module.scss";
 
 const GameItem: FC<{ game: Game }> = (props) => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const addGameHandler = (game: Game) => {
     dispatch({ type: ADD_GAME_TO_CART, payload: game });

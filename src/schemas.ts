@@ -1,3 +1,5 @@
+import store from "./redux/store"
+
 export interface Game {
     id: string,
     title: string,
@@ -32,8 +34,11 @@ export interface REMOVE_SINGLE_GAME_FROM_CART {
 }
 
 export interface TOGGLE_CART_VISIBILITY {
-    type: "TOGGLE_CART_VISIBILITY",
-    payload: boolean
+    type: "TOGGLE_CART_VISIBILITY"
 }
+
+export type RootState = ReturnType<typeof store.getState>
+
+export type AppDispatch = typeof store.dispatch
 
 export type Action = LOAD_GAMES | ADD_GAME_TO_CART | REMOVE_SINGLE_GAME_FROM_CART | TOGGLE_CART_VISIBILITY

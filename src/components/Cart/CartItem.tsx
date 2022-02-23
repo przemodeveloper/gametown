@@ -1,11 +1,11 @@
 import classes from "./CartItem.module.scss";
-import { useDispatch } from "react-redux";
 import {
   ADD_GAME_TO_CART,
   REMOVE_SINGLE_GAME_FROM_CART,
 } from "../../redux/actionTypes";
 import { Game } from "../../schemas";
 import { FC } from "react";
+import { useAppDispatch } from "../../hooks";
 
 const CartItem: FC<{
   title: string;
@@ -14,7 +14,7 @@ const CartItem: FC<{
   id: string;
   cartItem: Game;
 }> = (props) => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const addGameHandler = (game: Game) => {
     dispatch({ type: ADD_GAME_TO_CART, payload: game });
