@@ -5,8 +5,9 @@ import {
   REMOVE_SINGLE_GAME_FROM_CART,
 } from "../../redux/actionTypes";
 import { Game } from "../../schemas";
+import { FC } from "react";
 
-const CartItem: React.FC<{
+const CartItem: FC<{
   title: string;
   price: number;
   amount: number;
