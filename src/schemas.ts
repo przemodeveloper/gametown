@@ -12,7 +12,8 @@ export interface State {
     cart: Game[],
     totalPrice: number,
     totalQuantity: number,
-    isCartVisible: boolean
+    isCartVisible: boolean,
+    isLoaded: boolean
 }
 
 export interface LOAD_GAMES {

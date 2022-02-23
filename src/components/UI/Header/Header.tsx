@@ -1,8 +1,9 @@
 import classes from "./Header.module.scss";
 
 import { useDispatch, useSelector } from "react-redux";
-import { TOGGLE_CART_VISIBILITY } from "../../redux/actionTypes";
-import { State } from "../../schemas";
+
+import { TOGGLE_CART_VISIBILITY } from "../../../redux/actionTypes";
+import { State } from "../../../schemas";
 
 const Header = () => {
   const totalQuantity = useSelector((state: State) => state.totalQuantity);

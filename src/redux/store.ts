@@ -12,12 +12,13 @@ const initialState = {
     totalPrice: 0 as Number,
     totalQuantity: 0 as Number,
     isCartVisible: false as Boolean,
+    isLoaded: false,
 } as State
 
 
 const gameReducer = (state = initialState, action: Action) => {
     if(action.type === LOAD_GAMES) {
-      return {...state, gamesList: action.payload}
+      return {...state, gamesList: action.payload, isLoaded: true}
     }
 
     if(action.type === ADD_GAME_TO_CART) {
