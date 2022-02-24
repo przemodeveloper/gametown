@@ -2,7 +2,7 @@ import { createStore, applyMiddleware } from "redux"
 import { composeWithDevTools } from "redux-devtools-extension"
 import thunkMiddleware from "redux-thunk"
 import { Action, Game, State } from "../schemas"
-import { ADD_GAME_TO_CART, LOAD_GAMES, REMOVE_SINGLE_GAME_FROM_CART, TOGGLE_CART_VISIBILITY } from "./actionTypes"
+import { ADD_GAME_TO_CART, LOAD_GAMES, RECALCULATE_PRICE, RECALCULATE_QUANTITY, REMOVE_SINGLE_GAME_FROM_CART, TOGGLE_CART_VISIBILITY } from "./actionTypes"
 
 const composedEnhancer = composeWithDevTools(applyMiddleware(thunkMiddleware))
 
@@ -67,15 +67,7 @@ const gameReducer = (state = initialState, action: Action) => {
             updatedCart = updatedCart.filter(g => g.id !== action.payload)
         }
 
-        const updatedPrice = Number(updatedCart.map((g) => {
-            return g.amount * g.price
-          }).reduce((acc, el) => acc + el, 0).toFixed(2))
-
-          const updatedQuantity = updatedCart.map((g) => {
-            return g.amount
-          }).reduce((acc, el) => acc + el, 0)
-
-          return {...state, cart: updatedCart, totalPrice: updatedPrice, totalQuantity: updatedQuantity}
+          return {...state, cart: updatedCart }
 
     }
 
@@ -85,6 +77,26 @@ const gameReducer = (state = initialState, action: Action) => {
           return {...state, isCartVisible: !updatedState.isCartVisible}
     }
 
+    if(action.type === RECALCULATE_PRICE) {
+      const updatedCart = [...state.cart]
+
+      const updatedPrice = Number(updatedCart.map((g) => {
+        return g.amount * g.price
+      }).reduce((acc, el) => acc + el, 0).toFixed(2))
+
+      return {...state, totalPrice: updatedPrice}
+    } 
+
+
+    if(action.type === RECALCULATE_QUANTITY) {
+      const updatedCart = [...state.cart]
+
+      const updatedQuantity = updatedCart.map((g) => {
+        return g.amount
+      }).reduce((acc, el) => acc + el, 0)
+
+      return {...state, totalQuantity: updatedQuantity}
+    } 
 
     return state
 }

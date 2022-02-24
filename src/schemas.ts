@@ -37,8 +37,16 @@ export interface TOGGLE_CART_VISIBILITY {
     type: "TOGGLE_CART_VISIBILITY"
 }
 
+export interface RECALCULATE_PRICE {
+    type: "RECALCULATE_PRICE"
+}
+
+export interface RECALCULATE_QUANTITY {
+    type: "RECALCULATE_QUANTITY"
+}
+
 export type RootState = ReturnType<typeof store.getState>
 
 export type AppDispatch = typeof store.dispatch
 
-export type Action = LOAD_GAMES | ADD_GAME_TO_CART | REMOVE_SINGLE_GAME_FROM_CART | TOGGLE_CART_VISIBILITY
+export type Action = LOAD_GAMES | ADD_GAME_TO_CART | REMOVE_SINGLE_GAME_FROM_CART | TOGGLE_CART_VISIBILITY | RECALCULATE_PRICE | RECALCULATE_QUANTITY
