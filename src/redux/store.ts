@@ -46,15 +46,8 @@ const gameReducer = (state = initialState, action: Action) => {
             updatedCart[gameIndex].amount++        
           }
 
-          const updatedPrice = Number(updatedCart.map((g) => {
-            return g.amount * g.price
-          }).reduce((acc, el) => acc + el, 0).toFixed(2))
 
-          const updatedQuantity = updatedCart.map((g) => {
-            return g.amount
-          }).reduce((acc, el) => acc + el, 0)
-
-         return {...state, cart: updatedCart, totalPrice: updatedPrice, totalQuantity: updatedQuantity}
+         return {...state, cart: updatedCart }
     }
 
     if(action.type === REMOVE_SINGLE_GAME_FROM_CART) {
@@ -67,7 +60,11 @@ const gameReducer = (state = initialState, action: Action) => {
 
         if(updatedCart[gameIndex].amount === 0) {
             updatedCart = updatedCart.filter(g => g.id !== action.payload)
-            cartVisible = false
+
+            if(state.totalQuantity === 1) {
+              cartVisible = false
+            }
+ 
         }
 
           return {...state, cart: updatedCart, isCartVisible: cartVisible }
