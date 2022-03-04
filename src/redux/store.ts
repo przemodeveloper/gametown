@@ -63,11 +63,14 @@ const gameReducer = (state = initialState, action: Action) => {
         const gameIndex = updatedCart.findIndex((g) => g.id === action.payload)
         updatedCart[gameIndex].amount--
 
+        let cartVisible = state.isCartVisible
+
         if(updatedCart[gameIndex].amount === 0) {
             updatedCart = updatedCart.filter(g => g.id !== action.payload)
+            cartVisible = false
         }
 
-          return {...state, cart: updatedCart }
+          return {...state, cart: updatedCart, isCartVisible: cartVisible }
 
     }
 
