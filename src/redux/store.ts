@@ -80,9 +80,9 @@ const gameReducer = (state = initialState, action: Action) => {
     if(action.type === RECALCULATE_PRICE) {
       const updatedCart = [...state.cart]
 
-      const updatedPrice = Number(updatedCart.map((g) => {
+      const updatedPrice = updatedCart.map((g) => {
         return g.amount * g.price
-      }).reduce((acc, el) => acc + el, 0).toFixed(2))
+      }).reduce((acc, el) => acc + el, 0)
 
       return {...state, totalPrice: updatedPrice}
     } 

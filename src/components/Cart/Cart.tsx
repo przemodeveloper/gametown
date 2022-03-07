@@ -2,12 +2,13 @@ import { useAppSelector } from "../../hooks";
 import { State } from "../../schemas";
 import CartItem from "./CartItem";
 import PriceSummary from "./PriceSummary";
+import Modal from "../UI/UI/Modal";
 
 const Cart = () => {
   const cart = useAppSelector((state: State) => state.cart);
 
   return (
-    <>
+    <Modal>
       {cart.map((item: any) => {
         return (
           <CartItem
@@ -21,7 +22,7 @@ const Cart = () => {
         );
       })}
       <PriceSummary />
-    </>
+    </Modal>
   );
 };
 
