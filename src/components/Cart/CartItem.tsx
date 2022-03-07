@@ -8,6 +8,7 @@ import {
 import { Game } from "../../schemas";
 import { FC } from "react";
 import { useAppDispatch } from "../../hooks";
+import Button from "../UI/Button/Button";
 
 const CartItem: FC<{
   title: string;
@@ -39,8 +40,16 @@ const CartItem: FC<{
           <p className="mb-0">x {props.amount}</p>
         </div>
         <div className={classes["btn-group"]}>
-          <button onClick={() => addGameHandler(props.cartItem)}>+</button>
-          <button onClick={() => removeGameHandler(props.id)}>-</button>
+          <Button
+            className={classes.btn}
+            onClick={() => addGameHandler(props.cartItem)}
+            text="+"
+          />
+          <Button
+            className={classes.btn}
+            onClick={() => removeGameHandler(props.id)}
+            text="-"
+          />
         </div>
       </div>
     </div>

@@ -6,6 +6,7 @@ import {
   RECALCULATE_QUANTITY,
 } from "../../redux/actionTypes";
 import { Game } from "../../schemas";
+import Button from "../UI/Button/Button";
 import classes from "./GameItem.module.scss";
 
 const GameItem: FC<{ game: Game }> = (props) => {
@@ -26,7 +27,6 @@ const GameItem: FC<{ game: Game }> = (props) => {
           className={classes.image}
         />
       </div>
-
       <div
         className={`${classes["description-container"]} d-flex justify-content-around align-items-end`}
       >
@@ -36,13 +36,11 @@ const GameItem: FC<{ game: Game }> = (props) => {
         </div>
         <p className="mb-0">{`$${props.game.price}`}</p>
       </div>
-
-      <button
+      <Button
         className={classes["add-btn"]}
         onClick={() => addGameHandler(props.game)}
-      >
-        Add to cart
-      </button>
+        text="Add to cart"
+      />
     </li>
   );
 };

@@ -29,18 +29,11 @@
   column-gap: 4px;
   row-gap: 4px;
 
-  button {
+  .btn {
     border: 2px solid $color-primary;
     width: 35px;
     text-align: center;
     vertical-align: middle;
     height: 35px;
-    background-color: $color-secondary;
-    transition: all 0.3s;
-
-    &:hover {
-      background-color: $color-primary;
-      color: $color-secondary;
-    }
   }
 }

@@ -1,15 +1,22 @@
-import { useAppSelector } from "../../hooks";
+import { useAppDispatch, useAppSelector } from "../../hooks";
 import { State } from "../../schemas";
+import Button from "../UI/Button/Button";
+import Modal from "../UI/Modal/Modal";
 import CartItem from "./CartItem";
 import PriceSummary from "./PriceSummary";
-import Modal from "../UI/UI/Modal";
+import classes from "./Cart.module.scss";
 
 const Cart = () => {
   const cart = useAppSelector((state: State) => state.cart);
+  const dispatch = useAppDispatch();
+
+  const hideCart = () => {
+    dispatch({ type: "TOGGLE_CART_VISIBILITY" });
+  };
 
   return (
     <Modal>
-      {cart.map((item: any) => {
+      {cart.map((item) => {
         return (
           <CartItem
             key={item.id}
@@ -21,7 +28,14 @@ const Cart = () => {
           />
         );
       })}
-      <PriceSummary />
+      <div className="d-flex justify-content-between align-items-center">
+        <PriceSummary />
+        <Button
+          className={classes["close-btn"]}
+          text="close"
+          onClick={hideCart}
+        />
+      </div>
     </Modal>
   );
 };

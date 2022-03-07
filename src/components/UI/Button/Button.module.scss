@@ -1,0 +1,13 @@
+@import "../../../variables";
+
+.btn {
+  background-color: $color-secondary;
+  border: none;
+  color: $color-primary;
+  transition: all 0.3s;
+
+  &:hover {
+    background-color: #0c2d48;
+    color: #ffffff;
+  }
+}

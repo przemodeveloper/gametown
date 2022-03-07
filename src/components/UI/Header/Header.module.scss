@@ -20,14 +20,9 @@
 .cart-btn {
   font-size: $font-size-small;
   padding: 0 1.5rem;
-  border: none;
-  color: $color-primary;
   border: 1px solid transparent;
-  transition: all 0.3s;
 
   &:hover {
-    background-color: $color-primary;
-    color: $color-secondary;
     border: 1px solid $color-secondary;
   }
 }
