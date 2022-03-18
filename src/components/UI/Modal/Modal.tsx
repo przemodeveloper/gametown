@@ -1,9 +1,17 @@
 import classes from "./Modal.module.scss";
 import { FC, ReactNode } from "react";
 import ReactDOM from "react-dom";
+import { useAppDispatch } from "../../../hooks";
+import { TOGGLE_CART_VISIBILITY } from "../../../redux/actionTypes";
 
 const Backdrop = () => {
-  return <div className={classes.backdrop}></div>;
+  const dispatch = useAppDispatch();
+
+  const toggleHandler = () => {
+    dispatch({ type: TOGGLE_CART_VISIBILITY });
+  };
+
+  return <div className={classes.backdrop} onClick={toggleHandler}></div>;
 };
 
 const ModalOverlay: FC<{ children: ReactNode }> = (props) => {
