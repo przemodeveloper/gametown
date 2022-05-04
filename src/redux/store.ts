@@ -1,10 +1,6 @@
-import { createStore, applyMiddleware } from "redux"
-import { composeWithDevTools } from "redux-devtools-extension"
-import thunkMiddleware from "redux-thunk"
-import { Action, Game, State } from "../schemas"
-import { ADD_GAME_TO_CART, LOAD_GAMES, RECALCULATE_PRICE, RECALCULATE_QUANTITY, REMOVE_SINGLE_GAME_FROM_CART, TOGGLE_CART_VISIBILITY } from "./actionTypes"
+import { configureStore, createSlice } from "@reduxjs/toolkit"
+import {  Game, State } from "../schemas"
 
-const composedEnhancer = composeWithDevTools(applyMiddleware(thunkMiddleware))
 
 const initialState = {
     gamesList: [] as Game[],
@@ -16,13 +12,14 @@ const initialState = {
 } as State
 
 
-const gameReducer = (state = initialState, action: Action) => {
-    if(action.type === LOAD_GAMES) {
-
-      const loadedGames = [] as Game[]
+const cartSlice = createSlice({
+  name: 'cart',
+  initialState,
+  reducers: {
+    transformPayload(state, action) {
   
       for(const key in action.payload) {
-        loadedGames.push({
+        state.gamesList.push({
           id: key,
           title: action.payload[key].title,
           description: action.payload[key].description,
@@ -32,75 +29,53 @@ const gameReducer = (state = initialState, action: Action) => {
         })
       }
 
-      return {...state, gamesList: loadedGames, isLoaded: true}
-    }
+      state.isLoaded = true;
 
-    if(action.type === ADD_GAME_TO_CART) {
-        const updatedCart = [...state.cart]  as Game[]
-
-        const gameIndex = updatedCart.findIndex((g) => g.id === action.payload.id)
-          
-          if(gameIndex === -1) {
-            updatedCart.push({...action.payload, amount: 1})
-          } else {
-            updatedCart[gameIndex].amount++        
-          }
-
-
-         return {...state, cart: updatedCart }
-    }
-
-    if(action.type === REMOVE_SINGLE_GAME_FROM_CART) {
-
-        let updatedCart = [...state.cart] as Game[]
-        const gameIndex = updatedCart.findIndex((g) => g.id === action.payload)
-        updatedCart[gameIndex].amount--
-
-        let cartVisible = state.isCartVisible
-
-        if(updatedCart[gameIndex].amount === 0) {
-            updatedCart = updatedCart.filter(g => g.id !== action.payload)
-
-            if(state.totalQuantity === 1) {
-              cartVisible = false
-            }
- 
+    },
+    addGameToCart(state, action) {
+      const gameIndex = state.cart.findIndex((g) => g.id === action.payload.id)
+        
+        if(gameIndex === -1) {
+          state.cart.push({...action.payload, amount: 1})
+        } else {
+          state.cart[gameIndex].amount++        
         }
+        
 
-          return {...state, cart: updatedCart, isCartVisible: cartVisible }
+    },
+    removeGameFromCart(state, action) {
+      const gameIndex = state.cart.findIndex((g) => g.id === action.payload)
+      state.cart[gameIndex].amount--
 
-    }
+      if(state.cart[gameIndex].amount === 0) {
+        state.cart = state.cart.filter(g => g.id !== action.payload)
 
-    if(action.type === TOGGLE_CART_VISIBILITY) {
-        const updatedState = {...state}
-        if(state.totalQuantity > 0) 
-          return {...state, isCartVisible: !updatedState.isCartVisible}
-    }
-
-    if(action.type === RECALCULATE_PRICE) {
-      const updatedCart = [...state.cart]
-
-      const updatedPrice = updatedCart.map((g) => {
+          if(state.totalQuantity === 1) {
+            state.isCartVisible = false
+          }
+      }
+    },
+    toggleCartVisibility(state) {
+      if(state.totalQuantity > 0) 
+      state.isCartVisible = !state.isCartVisible
+    },
+    recalculatePrice(state) {
+      state.totalPrice = state.cart.map((g) => {
         return g.amount * g.price
       }).reduce((acc, el) => acc + el, 0)
-
-      return {...state, totalPrice: updatedPrice}
-    } 
-
-
-    if(action.type === RECALCULATE_QUANTITY) {
-      const updatedCart = [...state.cart]
-
-      const updatedQuantity = updatedCart.map((g) => {
+    },
+    recalculateQuantity(state) {
+      state.totalQuantity = state.cart.map((g) => {
         return g.amount
       }).reduce((acc, el) => acc + el, 0)
+    }
+  }
+})
 
-      return {...state, totalQuantity: updatedQuantity}
-    } 
+const store = configureStore({
+  reducer: cartSlice.reducer
+})
 
-    return state
-}
-
-const store = createStore(gameReducer, composedEnhancer)
+export const cartActions = cartSlice.actions;
 
 export default store;

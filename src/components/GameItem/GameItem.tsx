@@ -1,10 +1,6 @@
 import { FC } from "react";
 import { useAppDispatch } from "../../hooks";
-import {
-  ADD_GAME_TO_CART,
-  RECALCULATE_PRICE,
-  RECALCULATE_QUANTITY,
-} from "../../redux/actionTypes";
+import { cartActions } from "../../redux/store";
 import { Game } from "../../schemas";
 import Button from "../UI/Button/Button";
 import classes from "./GameItem.module.scss";
@@ -13,9 +9,9 @@ const GameItem: FC<{ game: Game }> = (props) => {
   const dispatch = useAppDispatch();
 
   const addGameHandler = (game: Game) => {
-    dispatch({ type: ADD_GAME_TO_CART, payload: game });
-    dispatch({ type: RECALCULATE_PRICE });
-    dispatch({ type: RECALCULATE_QUANTITY });
+    dispatch(cartActions.addGameToCart(game));
+    dispatch(cartActions.recalculatePrice());
+    dispatch(cartActions.recalculateQuantity());
   };
 
   return (

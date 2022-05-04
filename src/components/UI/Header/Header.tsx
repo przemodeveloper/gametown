@@ -1,9 +1,9 @@
 import classes from "./Header.module.scss";
 
-import { TOGGLE_CART_VISIBILITY } from "../../../redux/actionTypes";
 import { State } from "../../../schemas";
 import { useAppDispatch, useAppSelector } from "../../../hooks";
 import Button from "../Button/Button";
+import { cartActions } from "../../../redux/store";
 
 const Header = () => {
   const totalQuantity = useAppSelector((state: State) => state.totalQuantity);
@@ -11,7 +11,7 @@ const Header = () => {
   const dispatch = useAppDispatch();
 
   const toggleHandler = () => {
-    dispatch({ type: TOGGLE_CART_VISIBILITY });
+    dispatch(cartActions.toggleCartVisibility());
   };
 
   return (

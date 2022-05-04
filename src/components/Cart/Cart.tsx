@@ -5,13 +5,14 @@ import Modal from "../UI/Modal/Modal";
 import CartItem from "./CartItem";
 import PriceSummary from "./PriceSummary";
 import classes from "./Cart.module.scss";
+import { cartActions } from "../../redux/store";
 
 const Cart = () => {
   const cart = useAppSelector((state: State) => state.cart);
   const dispatch = useAppDispatch();
 
   const hideCart = () => {
-    dispatch({ type: "TOGGLE_CART_VISIBILITY" });
+    dispatch(cartActions.toggleCartVisibility());
   };
 
   return (

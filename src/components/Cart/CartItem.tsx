@@ -1,14 +1,9 @@
 import classes from "./CartItem.module.scss";
-import {
-  ADD_GAME_TO_CART,
-  RECALCULATE_PRICE,
-  RECALCULATE_QUANTITY,
-  REMOVE_SINGLE_GAME_FROM_CART,
-} from "../../redux/actionTypes";
 import { Game } from "../../schemas";
 import { FC } from "react";
 import { useAppDispatch } from "../../hooks";
 import Button from "../UI/Button/Button";
+import { cartActions } from "../../redux/store";
 
 const CartItem: FC<{
   title: string;
@@ -20,15 +15,15 @@ const CartItem: FC<{
   const dispatch = useAppDispatch();
 
   const addGameHandler = (game: Game) => {
-    dispatch({ type: ADD_GAME_TO_CART, payload: game });
-    dispatch({ type: RECALCULATE_PRICE });
-    dispatch({ type: RECALCULATE_QUANTITY });
+    dispatch(cartActions.addGameToCart(game));
+    dispatch(cartActions.recalculatePrice());
+    dispatch(cartActions.recalculateQuantity());
   };
 
   const removeGameHandler = (id: string) => {
-    dispatch({ type: REMOVE_SINGLE_GAME_FROM_CART, payload: id });
-    dispatch({ type: RECALCULATE_PRICE });
-    dispatch({ type: RECALCULATE_QUANTITY });
+    dispatch(cartActions.removeGameFromCart(id));
+    dispatch(cartActions.recalculatePrice());
+    dispatch(cartActions.recalculateQuantity());
   };
 
   return (

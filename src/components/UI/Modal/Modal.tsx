@@ -2,13 +2,13 @@ import classes from "./Modal.module.scss";
 import { FC, ReactNode } from "react";
 import ReactDOM from "react-dom";
 import { useAppDispatch } from "../../../hooks";
-import { TOGGLE_CART_VISIBILITY } from "../../../redux/actionTypes";
+import { cartActions } from "../../../redux/store";
 
 const Backdrop = () => {
   const dispatch = useAppDispatch();
 
   const toggleHandler = () => {
-    dispatch({ type: TOGGLE_CART_VISIBILITY });
+    dispatch(cartActions.toggleCartVisibility());
   };
 
   return <div className={classes.backdrop} onClick={toggleHandler}></div>;
