@@ -76,6 +76,10 @@ const store = configureStore({
   reducer: cartSlice.reducer
 })
 
+export type RootState = ReturnType<typeof store.getState>
+
+export type AppDispatch = typeof store.dispatch
+
 export const cartActions = cartSlice.actions;
 
 export default store;
