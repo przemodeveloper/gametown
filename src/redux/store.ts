@@ -16,20 +16,9 @@ const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
-    transformPayload(state, action) {
-  
-      for(const key in action.payload) {
-        state.gamesList.push({
-          id: key,
-          title: action.payload[key].title,
-          description: action.payload[key].description,
-          price: action.payload[key].price,
-          image: action.payload[key].image,
-        })
-      }
-
-      state.isLoaded = true;
-
+    loadList(state, action) {
+      state.gamesList = action.payload.gamesList;
+      state.isLoaded = action.payload.isLoaded;
     },
     addGameToCart(state, action) {
       const gameIndex = state.cart.findIndex((g) => g.id === action.payload.id)

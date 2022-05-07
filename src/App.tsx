@@ -12,9 +12,10 @@ const App = () => {
   const isCartVisible = useAppSelector((state: State) => state.isCartVisible);
   const totalQuantity = useAppSelector((state: State) => state.totalQuantity);
   const isLoaded = useAppSelector((state: State) => state.isLoaded);
+  const games = useAppSelector((state: State) => state.gamesList);
 
   useEffect(() => {
-    store.dispatch(fetchGames as any);
+    store.dispatch(fetchGames);
   }, []);
 
   return (
@@ -22,7 +23,7 @@ const App = () => {
       <Header />
       <div className="container">
         {isCartVisible && totalQuantity > 0 && <Cart />}
-        {isLoaded ? <GamesList /> : <Loader />}
+        {isLoaded ? <GamesList games={games} /> : <Loader />}
       </div>
     </>
   );
