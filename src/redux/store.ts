@@ -1,13 +1,13 @@
 import { configureStore, createSlice } from "@reduxjs/toolkit"
-import {  Game, State } from "../schemas"
+import {  Cart, Game, State } from "../schemas"
 
 
 const initialState = {
     gamesList: [] as Game[],
-    cart: [] as Game[],
-    totalPrice: 0 as Number,
-    totalQuantity: 0 as Number,
-    isCartVisible: false as Boolean,
+    cart: [] as Cart[],
+    totalPrice: 0,
+    totalQuantity: 0,
+    isCartVisible: false,
     isLoaded: false,
 } as State
 
@@ -25,7 +25,6 @@ const cartSlice = createSlice({
           description: action.payload[key].description,
           price: action.payload[key].price,
           image: action.payload[key].image,
-          amount: 0
         })
       }
 

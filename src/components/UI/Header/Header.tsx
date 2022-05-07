@@ -1,13 +1,11 @@
 import classes from "./Header.module.scss";
 
-import { State } from "../../../schemas";
 import { useAppDispatch, useAppSelector } from "../../../hooks";
 import Button from "../Button/Button";
 import { cartActions } from "../../../redux/store";
 
 const Header = () => {
-  const totalQuantity = useAppSelector((state: State) => state.totalQuantity);
-
+  const totalQuantity = useAppSelector((state) => state.totalQuantity);
   const dispatch = useAppDispatch();
 
   const toggleHandler = () => {
