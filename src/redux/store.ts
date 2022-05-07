@@ -40,8 +40,6 @@ const cartSlice = createSlice({
         } else {
           state.cart[gameIndex].amount++        
         }
-        
-
     },
     removeGameFromCart(state, action) {
       const gameIndex = state.cart.findIndex((g) => g.id === action.payload)
@@ -60,15 +58,14 @@ const cartSlice = createSlice({
       state.isCartVisible = !state.isCartVisible
     },
     recalculatePrice(state) {
+      state.totalQuantity = state.cart.map((g) => {
+        return g.amount
+      }).reduce((acc, el) => acc + el, 0)
+
       state.totalPrice = state.cart.map((g) => {
         return g.amount * g.price
       }).reduce((acc, el) => acc + el, 0)
     },
-    recalculateQuantity(state) {
-      state.totalQuantity = state.cart.map((g) => {
-        return g.amount
-      }).reduce((acc, el) => acc + el, 0)
-    }
   }
 })
 
