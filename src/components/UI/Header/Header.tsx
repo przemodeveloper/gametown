@@ -5,7 +5,7 @@ import Button from "../Button/Button";
 import { cartActions } from "../../../redux/store";
 
 const Header = () => {
-  const totalQuantity = useAppSelector((state) => state.totalQuantity);
+  const totalQuantity = useAppSelector((state) => state.cart.totalQuantity);
   const dispatch = useAppDispatch();
 
   const toggleHandler = () => {

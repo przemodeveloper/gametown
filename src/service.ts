@@ -1,5 +1,5 @@
 import { Dispatch } from "redux"
-import { cartActions } from "./redux/store"
+import { gamesListActions } from "./redux/store"
 
 export const fetchGames = async (dispatch: Dispatch) => {
     let isLoaded = false;
@@ -20,5 +20,5 @@ export const fetchGames = async (dispatch: Dispatch) => {
 
     isLoaded = true;
   
-    dispatch(cartActions.loadList({gamesList, isLoaded}))
+    dispatch(gamesListActions.loadList({gamesList, isLoaded}))
   } 

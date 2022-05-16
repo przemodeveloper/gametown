@@ -8,7 +8,7 @@ import classes from "./Cart.module.scss";
 import { cartActions } from "../../redux/store";
 
 const Cart = () => {
-  const cart = useAppSelector((state: State) => state.cart);
+  const cart = useAppSelector((state: State) => state.cart.cart);
   const dispatch = useAppDispatch();
 
   const hideCart = () => {

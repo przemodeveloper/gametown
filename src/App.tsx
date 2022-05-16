@@ -9,10 +9,14 @@ import Loader from "./components/UI/Loader/Loader";
 import { useAppSelector } from "./hooks";
 
 const App = () => {
-  const isCartVisible = useAppSelector((state: State) => state.isCartVisible);
-  const totalQuantity = useAppSelector((state: State) => state.totalQuantity);
-  const isLoaded = useAppSelector((state: State) => state.isLoaded);
-  const games = useAppSelector((state: State) => state.gamesList);
+  const isCartVisible = useAppSelector(
+    (state: State) => state.cart.isCartVisible
+  );
+  const totalQuantity = useAppSelector(
+    (state: State) => state.cart.totalQuantity
+  );
+  const isLoaded = useAppSelector((state: State) => state.gamesList.isLoaded);
+  const games = useAppSelector((state: State) => state.gamesList.gamesList);
 
   useEffect(() => {
     store.dispatch(fetchGames);

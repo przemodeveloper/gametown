@@ -3,7 +3,7 @@ import { State } from "../../schemas";
 import classes from "./PriceSummary.module.scss";
 
 const PriceSummary = () => {
-  const totalPrice = useAppSelector((state: State) => state.totalPrice);
+  const totalPrice = useAppSelector((state: State) => state.cart.totalPrice);
 
   return (
     <h1 className={classes.title}>

@@ -16,11 +16,15 @@ export interface Cart {
 }
 
 export interface State {
-    gamesList: Game[],
-    cart: Cart[],
-    totalPrice: number,
-    totalQuantity: number,
-    isCartVisible: boolean,
-    isLoaded: boolean
+    cart: {
+        cart: Cart[],
+        totalPrice: number,
+        totalQuantity: number,
+        isCartVisible: boolean,
+    },
+    gamesList: {
+        gamesList: Game[],
+        isLoaded: boolean
+    }
 }
 
