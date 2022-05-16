@@ -5,7 +5,7 @@ import Modal from "../UI/Modal/Modal";
 import CartItem from "./CartItem";
 import PriceSummary from "./PriceSummary";
 import classes from "./Cart.module.scss";
-import { cartActions } from "../../redux/store";
+import { cartActions } from "../../redux/cartSlice";
 
 const Cart = () => {
   const cart = useAppSelector((state: State) => state.cart.cart);

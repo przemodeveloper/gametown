@@ -1,5 +1,5 @@
 import { Dispatch } from "redux"
-import { gamesListActions } from "./redux/store"
+import { gamesListActions } from "./redux/gamesListSlice";
 
 export const fetchGames = async (dispatch: Dispatch) => {
     let isLoaded = false;

@@ -3,7 +3,7 @@ import { Game } from "../../schemas";
 import { FC } from "react";
 import { useAppDispatch } from "../../hooks";
 import Button from "../UI/Button/Button";
-import { cartActions } from "../../redux/store";
+import { cartActions } from "../../redux/cartSlice";
 
 const CartItem: FC<{
   title: string;

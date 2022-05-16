@@ -6,7 +6,7 @@ const initialGamesListState = {
     isLoaded: false,
   }
   
-  export const gamesListSlice = createSlice({
+const gamesListSlice = createSlice({
     name: 'gamesList',
     initialState: initialGamesListState,
     reducers: {
@@ -16,3 +16,7 @@ const initialGamesListState = {
       },
     }
   })
+
+export default gamesListSlice.reducer;
+  
+export const gamesListActions = gamesListSlice.actions;

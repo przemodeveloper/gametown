@@ -2,7 +2,7 @@ import classes from "./Modal.module.scss";
 import { FC, ReactNode } from "react";
 import ReactDOM from "react-dom";
 import { useAppDispatch } from "../../../hooks";
-import { cartActions } from "../../../redux/store";
+import { cartActions } from "../../../redux/cartSlice";
 
 const Backdrop = () => {
   const dispatch = useAppDispatch();

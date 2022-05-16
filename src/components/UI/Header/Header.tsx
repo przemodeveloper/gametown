@@ -2,7 +2,7 @@ import classes from "./Header.module.scss";
 
 import { useAppDispatch, useAppSelector } from "../../../hooks";
 import Button from "../Button/Button";
-import { cartActions } from "../../../redux/store";
+import { cartActions } from "../../../redux/cartSlice";
 
 const Header = () => {
   const totalQuantity = useAppSelector((state) => state.cart.totalQuantity);

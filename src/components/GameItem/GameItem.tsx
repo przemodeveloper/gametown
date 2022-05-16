@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { useAppDispatch } from "../../hooks";
-import { cartActions } from "../../redux/store";
+import { cartActions } from "../../redux/cartSlice";
 import { Game } from "../../schemas";
 import Button from "../UI/Button/Button";
 import classes from "./GameItem.module.scss";
