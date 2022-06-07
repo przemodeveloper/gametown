@@ -14,37 +14,33 @@ const cartSlice = createSlice({
     reducers: {
       addGameToCart(state, action) {
         const gameIndex = state.cart.findIndex((g) => g.id === action.payload.id)
+        state.totalQuantity++
           
           if(gameIndex === -1) {
-            state.cart.push({...action.payload, amount: 1})
+            state.cart.push({...action.payload, quantity: 1, totalPrice: action.payload.price})
           } else {
-            state.cart[gameIndex].amount++        
+            state.cart[gameIndex].quantity++
+            state.cart[gameIndex].totalPrice = state.cart[gameIndex].totalPrice + action.payload.price
           }
       },
       removeGameFromCart(state, action) {
         const gameIndex = state.cart.findIndex((g) => g.id === action.payload)
-        state.cart[gameIndex].amount--
+        state.totalQuantity--
   
-        if(state.cart[gameIndex].amount === 0) {
+        if(state.cart[gameIndex].quantity === 1) {
           state.cart = state.cart.filter(g => g.id !== action.payload)
   
-            if(state.totalQuantity === 1) {
+            if(state.totalQuantity === 0) {
               state.isCartVisible = false
             }
+        } else {
+          state.cart[gameIndex].quantity--;
+          state.cart[gameIndex].totalPrice = state.cart[gameIndex].totalPrice - state.cart[gameIndex].price;
         }
       },
       toggleCartVisibility(state) {
         if(state.totalQuantity > 0) 
         state.isCartVisible = !state.isCartVisible
-      },
-      recalculatePrice(state) {
-        state.totalQuantity = state.cart.map((g) => {
-          return g.amount
-        }).reduce((acc, el) => acc + el, 0)
-  
-        state.totalPrice = state.cart.map((g) => {
-          return g.amount * g.price
-        }).reduce((acc, el) => acc + el, 0)
       },
     }
   })

@@ -10,7 +10,6 @@ const GameItem: FC<{ game: Game }> = (props) => {
 
   const addGameHandler = (game: Game) => {
     dispatch(cartActions.addGameToCart(game));
-    dispatch(cartActions.recalculatePrice());
   };
 
   return (

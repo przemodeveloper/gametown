@@ -11,7 +11,8 @@ export interface Cart {
     title: string,
     description: string,
     price: number,
-    amount: number,
+    totalPrice: number,
+    quantity: number,
     image: string
 }
 

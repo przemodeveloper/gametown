@@ -16,12 +16,10 @@ const CartItem: FC<{
 
   const addGameHandler = (game: Game) => {
     dispatch(cartActions.addGameToCart(game));
-    dispatch(cartActions.recalculatePrice());
   };
 
   const removeGameHandler = (id: string) => {
     dispatch(cartActions.removeGameFromCart(id));
-    dispatch(cartActions.recalculatePrice());
   };
 
   return (

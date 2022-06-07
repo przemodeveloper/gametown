@@ -23,14 +23,16 @@ const Cart = () => {
             key={item.id}
             id={item.id}
             title={item.title}
-            amount={item.amount}
+            amount={item.quantity}
             price={item.price}
             cartItem={item}
           />
         );
       })}
       <div className="d-flex justify-content-between align-items-center">
-        <PriceSummary />
+        <PriceSummary
+          totalPrice={cart.reduce((acc, el) => acc + el.totalPrice, 0)}
+        />
         <Button
           className={classes["close-btn"]}
           text="close"
